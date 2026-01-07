@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { SignJWT } from "jose";
 
 const JWT_SECRET = new TextEncoder().encode(
-  process.env.NEXT_CL_SUPABASE_JWT_SECRET || "your-secret-key"
+  process.env.NEXT_CL_SUPABASE_JWT_SECRET || "your-secret-key",
 );
 
 // In production, these should be stored in the database
@@ -18,7 +18,7 @@ export async function POST(request: NextRequest) {
     if (email !== ADMIN_EMAIL || password !== ADMIN_PASSWORD) {
       return NextResponse.json(
         { error: "Invalid email or password" },
-        { status: 401 }
+        { status: 401 },
       );
     }
 
@@ -32,7 +32,7 @@ export async function POST(request: NextRequest) {
     // Create response with cookie
     const response = NextResponse.json(
       { success: true, message: "Login successful" },
-      { status: 200 }
+      { status: 200 },
     );
 
     response.cookies.set("auth-token", token, {
@@ -48,7 +48,7 @@ export async function POST(request: NextRequest) {
     console.error("Login error:", error);
     return NextResponse.json(
       { error: "An error occurred during login" },
-      { status: 500 }
+      { status: 500 },
     );
   }
 }

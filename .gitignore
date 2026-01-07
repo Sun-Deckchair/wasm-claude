@@ -56,4 +56,10 @@ docs/
 # Resources
 resources/
 
+# internal scripts
+bin/
+
+# Others
+.healthcheckrc.json
+
 /lib/generated/prisma

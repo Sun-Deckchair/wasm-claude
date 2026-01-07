@@ -27,7 +27,8 @@
     "@eslint/eslintrc": "^3.3.3",
     "@types/pg": "^8.16.0",
     "@types/ws": "^8.18.1",
-    "husky": "^9.1.7"
+    "husky": "^9.1.7",
+    "prettier": "^3.7.4"
   },
   "scripts": {
     "dev": "next dev",
@@ -35,6 +36,13 @@
     "start": "next start",
     "lint": "next lint",
     "type-check": "tsc --noEmit",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "db:validate": "npx prisma validate",
+    "db:check-drift": "node bin/check-schema-drift.js",
+    "db:generate": "npx prisma generate --no-engine",
+    "db:studio": "npx prisma studio",
+    "health-check": "node bin/health-check.js",
     "precommit": "npm run build && npm run type-check",
     "prepare": "husky"
   }

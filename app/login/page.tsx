@@ -53,12 +53,8 @@ export default function LoginPage() {
               className="w-24 h-24 mx-auto"
             />
           </Link>
-          <h1 className="text-3xl font-bold text-gray-900 mb-2">
-            Admin Login
-          </h1>
-          <p className="text-gray-600">
-            Access the backend dashboard
-          </p>
+          <h1 className="text-3xl font-bold text-gray-900 mb-2">Admin Login</h1>
+          <p className="text-gray-600">Access the backend dashboard</p>
         </div>
 
         {/* Login Form */}
