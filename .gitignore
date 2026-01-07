@@ -55,3 +55,5 @@ docs/
 
 # Resources
 resources/
+
+/lib/generated/prisma

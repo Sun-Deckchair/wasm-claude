@@ -1,0 +1,78 @@
+generator client {
+  provider = "prisma-client"
+  output   = "../lib/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+  schemas  = ["wearescanme"]
+}
+
+model Animal {
+  id          String       @id @default(cuid())
+  qrCode      String       @unique
+  name        String?
+  type        AnimalType
+  status      AnimalStatus @default(OWNED)
+  breed       String?
+  color       String?
+  description String?
+  imageUrl    String?
+  ownerId     String?
+  createdAt   DateTime     @default(now())
+  updatedAt   DateTime     @updatedAt
+  owner       User?        @relation(fields: [ownerId], references: [id])
+  scans       Scan[]
+
+  @@index([qrCode])
+  @@index([ownerId])
+  @@schema("wearescanme")
+}
+
+model User {
+  id            String   @id @default(cuid())
+  email         String   @unique
+  name          String
+  phone         String?
+  preferredLang String   @default("en")
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+  animals       Animal[]
+  scans         Scan[]
+
+  @@index([email])
+  @@schema("wearescanme")
+}
+
+model Scan {
+  id        String   @id @default(cuid())
+  animalId  String
+  scannedBy String?
+  latitude  Float?
+  longitude Float?
+  location  String?
+  notes     String?
+  scannedAt DateTime @default(now())
+  animal    Animal   @relation(fields: [animalId], references: [id])
+  scanner   User?    @relation(fields: [scannedBy], references: [id])
+
+  @@index([animalId])
+  @@index([scannedAt])
+  @@schema("wearescanme")
+}
+
+enum AnimalType {
+  DOG
+  CAT
+
+  @@schema("wearescanme")
+}
+
+enum AnimalStatus {
+  OWNED
+  STREET
+  LOST
+  FOUND
+
+  @@schema("wearescanme")
+}
