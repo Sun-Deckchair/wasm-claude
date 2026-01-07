@@ -32,7 +32,7 @@
   },
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
+    "build": "prisma generate && next build",
     "start": "next start",
     "lint": "next lint",
     "type-check": "tsc --noEmit",
@@ -40,7 +40,7 @@
     "format:check": "prettier --check .",
     "db:validate": "npx prisma validate",
     "db:check-drift": "node bin/check-schema-drift.js",
-    "db:generate": "npx prisma generate --no-engine",
+    "db:generate": "npx prisma generate",
     "db:studio": "npx prisma studio",
     "health-check": "node bin/health-check.js",
     "precommit": "npm run build && npm run type-check",

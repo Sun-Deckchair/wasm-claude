@@ -6,8 +6,7 @@ body {
   font-family: Arial, Helvetica, sans-serif;
 }
 
-/* Remove default link styling for buttons */
+/* Remove default link underline */
 a {
   text-decoration: none;
-  color: inherit;
 }
